@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <title>
+    <%= htmlWebpackPlugin.options.title %>
+  </title>
+
+
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+  <style>body {
+  margin: 0;
+  font-size: 28px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* .header {
+  background-color: #f1f1f1;
+  padding: 30px;
+  text-align: center;
+} */
+
+#navbar {
+  overflow: hidden;
+  background-color: #333;
+    color: #f2f2f2;
+
+}
+
+#navbar a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+#navbar a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+#navbar a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.content {
+  padding: 16px;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.sticky + .content {
+  padding-top: 60px;
+}
+
+.truncate {
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+</style>
+
+
+  <!-- 
+  <link rel="stylesheet" href="../node_modules/material-design-lite/material.min.css">
+    <script src="../node_modules/material-design-lite/material.min.js"></script> -->
+
+  <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+  <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script> -->
+
+
+</head>
+
+<body>
+  <div class="header">
+
+  </div>
+  <div id="navbar">
+
+    <input id="txtServer" type="text" placeholder="Server" />
+    <input id="txtUser" name="username" type="text" placeholder="Username" />
+    <input id="txtPass" type="password" placeholder="Password" />
+
+    <button id="btnReqAgentData" class="btn btn-primary"> Request Agent Data</button>
+    <button id="clearDebug" class="btn btn-danger"> clear Debug</button>
+
+
+    <input id="txtLocation" type="text" value="MyLocation" placeholder="Location" />
+    <input id="txtColumns" type="text" value="" placeholder="Columns" /> <br />
+    LastResult [<span id="LastResult"></span>]s
+
+
+
+    <input id="chkDebug" type="checkbox" value="Show debug" checked="checked" /> Double Click debug area to clear<br />
+
+
+    <div id="inboundLiveStatusDiv">Inbound Live Status example</div>
+    <div id="inboundLiveStatusDiv1">Inbound Live Status example</div>
+    <!-- <div id="inboundLiveStatusDiv2">Inbound Live Status example</div> -->
+
+
+  </div>
+
+  <div class="container-fluid content truncate" id="objDebug"></div>
+  <div class="container-fluid content truncate" id="websocketApp"></div>
+  <div class="container-fluid content truncate" id="txtDebug"></div>
+  <div class="container-fluid content truncate" id="websockethtml5"></div>
+  <div class="container-fluid content truncate" id="outputhtml5"></div>
+  <div class="container-fluid content truncate" id=""></div>
+
+
+
+
+<script type="text/javascript" src="contact.bundle.js?07db65ad04f72bd2bef7"></script></body>
+
+</html>

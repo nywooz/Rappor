@@ -1,0 +1,32 @@
+.react-grid-item:not(.react-grid-placeholder) {
+  background: rgb(255, 255, 255);
+  border: none;
+}
+
+.react-grid-item.react-grid-placeholder {
+  background: rgba(138, 138, 138, 0.89);
+}
+
+.react-grid-item.static{
+  opacity:0.7
+}
+
+.selected-tile {
+  font-size: 12px;
+  text-overflow: ellipsis;
+  /* Required for text-overflow to do anything */
+  white-space: nowrap;
+  overflow: hidden;
+  vertical-align: middle;
+  margin-left: 12px;
+}
+
+.react-grid-item .title-handle {
+  background: #f2f6f7;
+}
+
+.react-grid-layout,
+.configPanel {
+  background: #f2f6f7;
+}
+
