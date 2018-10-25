@@ -12,7 +12,7 @@ import "bootstrap";
 import "./css/react-grid-layout.css";
 import "./css/react-grid-layout-custom.css";
 
-import "./js/WebSocket/index";
+// import "./js/WebSocket/index";
 
 // import 'bootstrap/js/dist/util';
 // import 'bootstrap/js/dist/dropdown';
