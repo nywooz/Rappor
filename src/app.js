@@ -7,7 +7,7 @@ import { Provider } from "react-redux";
 import productsReducer from "./js/reducers/product-reducer";
 import userReducer from "./js/reducers/user-reducer";
 
-require("babel-polyfill");
+require("@babel/polyfill");
 import "bootstrap";
 import "./css/react-grid-layout.css";
 import "./css/react-grid-layout-custom.css";

@@ -4,7 +4,6 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const webpack = require("webpack");
 const path = require("path");
-const PurifyCSSPlugin = require("purifycss-webpack");
 const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
   .BundleAnalyzerPlugin;
 
@@ -209,13 +208,6 @@ module.exports = {
       Util: "exports-loader?Util!bootstrap/js/dist/util"
     }),
     new webpack.NamedModulesPlugin(), //  This plugin will cause the relative path of the module to be displayed when HMR is enabled
-
-    // Make sure this is after ExtractTextPlugin!
-    // new PurifyCSSPlugin({
-    //   // Give paths to parse for rules. These should be absolute!
-    //   // path to the html file, and only related css to this html file will be included
-    //   paths: glob.sync(path.join(__dirname, "./src/*.html"))
-    // }),
 
     new BundleAnalyzerPlugin({
       // Can be `server`, `static` or `disabled`.
