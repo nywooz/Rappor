@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import "./App.css";
 
 import "./css/react-grid-layout.css";
 import "./css/react-grid-layout-custom.css";
@@ -8,13 +7,10 @@ import ViewEditToggleExample from "./js/HOC/ViewEditToggleExample";
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
+
           <p>
             Edit <code>src/App.js</code> and save to reload.
           </p>
-        </header>
-      </div>
     );
   }
 }
