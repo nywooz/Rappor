@@ -1,20 +1,13 @@
-
-
-
-import React, { Component } from "react";
+import React from "react";
 import { WidthProvider, Responsive } from "react-grid-layout";
 import _ from "lodash";
+
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
 const originalLayout = getFromLS("items") || [];
-
-import Dustbin from "../Single Target/Dustbin";
 
 /**
  * This layout demonstrates how to use a grid with a dynamic number of elements.
  */
-
-import { get_endDragElement } from "../Single Target/Toolbox";
-
 
 export default class AddRemoveLayout extends React.PureComponent {
   static defaultProps = {
@@ -119,9 +112,10 @@ export default class AddRemoveLayout extends React.PureComponent {
   onLayoutChange(layout) {
     saveToLS("items", layout);
 
-    this.props && this.props.onLayoutChange
-      ? this.props.onLayoutChange(layout)
-      : null;
+    // this.props && this.props.onLayoutChange
+    //   ? this.props.onLayoutChange(layout)
+    //   : null;
+
     this.setState({ items: layout });
   }
 
@@ -130,90 +124,25 @@ export default class AddRemoveLayout extends React.PureComponent {
     this.setState({ items: _.reject(this.state.items, { i: i }) });
   }
 
-  // Calls when drag starts.
-  onDragStart() {
-    console.log("rgl: onDragStart");
-  }
-
-  toolboxDrop() {
-    console.log("toolboxDrop");
-    this.onAddItem();
-  }
-
-  html_onDragEnter(e) {
-    this.preventDefault(e);
-    console.log("html_onDragEnter");
-    // this.onAddItem();
-  }
-
-  html_onDragOver(e) {
-    console.log("html_onDragOver");
-  }
-
-  preventDefault(e) {
-    e.preventDefault();
-    e.stopPropagation();
-  }
-
-  html_onDrop(e) {
-    const props = get_endDragElement();
-    props ? console.log(props.name) : null;
-    console.log("html_onDrop");
-
-    this.onAddItem(props.name);
-  }
-
-  // Calls on each drag movement.
-  onDrag() {
-    console.log("rgl: onDrag");
-  }
-  // Calls when drag is complete.
-  onDragStop() {
-    console.log("rgl: onDragStop");
-  }
-  // Calls when resize starts.
-  onResizeStart() {
-    console.log("rgl: onResizeStart");
-  }
-  // Calls when resize movement happens.
-  onResize() {
-    console.log("rgl: onResize");
-  }
-  // Calls when resize is complete.
-  onResizeStop() {
-    console.log("rgl: onResizeStop");
-  }
-
   render() {
     return (
       <div>
-        {/*
         <button onClick={this.onAddItem}>Add Item</button>
-         
-        <Dustbin2 dropCallback={this.toolboxDrop}> </Dustbin2>
-        */}
 
-        <div
-          id="Sanjeev"
-          onDragEnter={e => this.html_onDragEnter(e)}
-          onDragOver={e => this.preventDefault(e)}
-          onDrop={e => this.html_onDrop(e)}
+        <ResponsiveReactGridLayout
+          ref={this.canvasRef}
+          onDragStart={this.onDragStart}
+          onDrag={this.onDrag}
+          onDragStop={this.onDragStop}
+          onResizeStart={this.onResizeStart}
+          onResize={this.onResize}
+          onResizeStop={this.onResizeStop}
+          onLayoutChange={this.onLayoutChange}
+          onBreakpointChange={this.onBreakpointChange}
+          {...this.props}
         >
-          <ResponsiveReactGridLayout
-            ref={this.canvasRef}
-            onDragStart={this.onDragStart}
-            onDrag={this.onDrag}
-            onDragStop={this.onDragStop}
-            onResizeStart={this.onResizeStart}
-            onResize={this.onResize}
-            onResizeStop={this.onResizeStop}
-            onLayoutChange={this.onLayoutChange}
-            onBreakpointChange={this.onBreakpointChange}
-            {...this.props}
-          >
-            {_.map(this.state.items, el => this.createElement(el))}
-          </ResponsiveReactGridLayout>
-        </div>
+          {_.map(this.state.items, el => this.createElement(el))}
+        </ResponsiveReactGridLayout>
       </div>
     );
   }
@@ -238,82 +167,6 @@ function saveToLS(key, value) {
       JSON.stringify({
         [key]: value
       })
-    );
-  }
-}
-
-/**
- *  Dustbin2
- *
- *
- *
- *
- *
- *
- */
-
-import PropTypes from "prop-types";
-import { DropTarget } from "react-dnd";
-import ItemTypes from "../Single Target/ItemTypes";
-
-const style = {
-  // height: '12rem',
-  // width: '12rem',
-  // marginRight: '1.5rem',
-  // marginBottom: '1.5rem',
-  // textAlign: 'center',
-  // fontSize: '1rem',
-  // lineHeight: 'normal',
-  // float: 'left',
-
-  color: "white",
-  padding: "1rem",
-
-  backgroundColor: "#2222",
-  zIndex: "999999999",
-  // height: "100%",
-  // width: "100%",
-  // position: "absolute"
-
-  activeColor: "darkgreen",
-  candropColor: "darkkhaki"
-};
-
-const boxTarget = {
-  drop(props, monitor, component) {
-    props && props.dropCallback ? props.dropCallback() : null;
-    return { name: "Dustbin" };
-  }
-};
-
-@DropTarget(ItemTypes.BOX, boxTarget, (connect, monitor) => ({
-  connectDropTarget: connect.dropTarget(),
-  isOver: monitor.isOver(),
-  canDrop: monitor.canDrop()
-}))
-class Dustbin2 extends Component {
-  // static propTypes = {
-  //   connectDropTarget: PropTypes.func.isRequired,
-  //   isOver: PropTypes.bool.isRequired,
-  //   canDrop: PropTypes.bool.isRequired
-  // };
-
-  render() {
-    const { canDrop, isOver, connectDropTarget } = this.props;
-    const isActive = canDrop && isOver;
-
-    let backgroundColor = style.backgroundColor;
-
-    if (isActive) {
-      backgroundColor = style.activeColor;
-    } else if (canDrop) {
-      backgroundColor = style.candropColor;
-    }
-
-    return connectDropTarget(
-      <div style={{ ...style, backgroundColor }}>
-        {isActive ? "Release to drop" : "Drag a box here"}
-      </div>
     );
   }
 }
