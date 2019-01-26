@@ -15,7 +15,6 @@ import ViewEditToggleExample from "./HOC/ViewEditToggleExample";
 // import 'bootstrap/js/dist/dropdown';
 
 //import RDnD from "./React DnD/examples/00 Chessboard.1/Tutorial App.1/index";
-//import RDnD from "./React DnD/examples/00 Chessboard.1/Tutorial App.1/index";
 
 const rootEl = document.getElementById("root");
 
