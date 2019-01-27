@@ -3,9 +3,8 @@ import { render } from "react-dom";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 
-import { gridTypes } from "../../data/Country";
+import { gridTypes } from "../../data/gridTypes";
 import { resizeHChart, findAncestor, debounce } from "../commonFns";
-import { iconsTypeMap } from "../RGL/Skeleton";
 import { TemplateChart } from "./TemplateChart";
 
 let myVar = 0;

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 import { WidthProvider, Responsive } from "react-grid-layout";
 import _ from "lodash";
-import { iconsTypeMap } from "./Skeleton";
+import { iconsTypeMap } from "../../data/gridTypes";
 import { newGUID } from "../commonFns";
 import GridItem from "../Chart/GridItem";
 
@@ -62,7 +62,8 @@ export default class AddRemoveLayout extends React.PureComponent {
         className="container-fluid"
       >
         <div className="row">
-          <div className="col-10" />
+          <div className="col-8" />
+          <div className="col-2">search</div>
           <div
             className="col-2"
             style={removeStyle}
