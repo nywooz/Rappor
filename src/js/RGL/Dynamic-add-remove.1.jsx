@@ -9,7 +9,7 @@ const originalLayout = getFromLS("items") || [];
  * This layout demonstrates how to use a grid with a dynamic number of elements.
  */
 
-export default class AddRemoveLayout extends React.PureComponent {
+export default class AddRemoveLayout extends React.Component  {
   static defaultProps = {
     className: "layout",
     cols: { lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 },
@@ -20,18 +20,18 @@ export default class AddRemoveLayout extends React.PureComponent {
     super(props);
 
     this.state = {
-      // items: originalLayout,
-      items: [0, 1, 2].map(function(i, key, list) {
-        return {
-          name: i.toString(),
-          i: i.toString(),
-          x: i,
-          y: 0,
-          w: 1,
-          h: 1,
-          add: i === (list.length - 1).toString()
-        };
-      }),
+      items: originalLayout,
+      // items: [0, 1, 2].map(function(i, key, list) {
+      //   return {
+      //     name: i.toString(),
+      //     i: i.toString(),
+      //     x: i,
+      //     y: 0,
+      //     w: 1,
+      //     h: 1,
+      //     add: i === (list.length - 1).toString()
+      //   };
+      // }),
       newCounter: 0
     };
     this.canvasRef = React.createRef();
@@ -69,7 +69,7 @@ export default class AddRemoveLayout extends React.PureComponent {
           </span>
         ) : (
           <span className="text">
-            {i} {el.name && el.name != i ? " " + el.name : ""}
+            {i} {el.name && el.name !== i ? " " + el.name : ""}
           </span>
         )}
         <span
