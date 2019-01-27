@@ -29,17 +29,7 @@ export class TemplateChart extends React.Component {
 
     const cb = function() {};
 
-    /*
-        To Dos:
-    
-        Module the GridItem Content
-        save layout
-        Grid Item Uniqueness
-    
-        */
-
     const { type } = this.props;
-    //return <p props={this.props}>{templateType} </p>;
 
     return (
       <HighchartsReact

@@ -5,6 +5,7 @@ import _ from "lodash";
 import { iconsTypeMap } from "../../data/gridTypes";
 import { newGUID } from "../commonFns";
 import GridItem from "../Chart/GridItem";
+import FloatingActionButton from "../FloatingActionButton";
 
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
 const layout = getFromLS("items", "rgl-7") || [];
@@ -63,7 +64,7 @@ export default class AddRemoveLayout extends React.PureComponent {
       >
         <div className="row">
           <div className="col-8" />
-          <div className="col-2">search</div>
+          <div className="col-2">edit</div>
           <div
             className="col-2"
             style={removeStyle}
@@ -154,9 +155,7 @@ export default class AddRemoveLayout extends React.PureComponent {
   };
 
   onRemoveItem(i) {
-    console.log("removing", i);
     const oldItems = this.state.items;
-
     const newItems = _.reject(oldItems, { i: i });
 
     this.setState({ items: newItems });
@@ -221,8 +220,11 @@ export default class AddRemoveLayout extends React.PureComponent {
   render() {
     return (
       <div>
-        <button onClick={this.onAddItem}>Add Item</button>
-
+        <FloatingActionButton
+          onClick={e => {
+            this.onAddItem();
+          }}
+        />
         <div ref={this.HTMLcanvasRef}>
           <ResponsiveReactGridLayout
             ref={this.canvasRef}

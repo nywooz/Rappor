@@ -5,13 +5,7 @@ export const gridTypes = {
     "bar",
     "area",
     "spline",
-    "areaspline",
-    "column",
-    "scatter",
-    "gauge",
-    "arearange",
-    "areasplinerange",
-    "columnrange"
+    "areaspline"
   ],
   others: ["text", "image", "list", "table", "carousel"]
 };

@@ -22,8 +22,13 @@ export default class App extends React.Component {
   render() {
     const cb = function() {};
 
-    const { templateType } = this.props;
-    const gridType = get_gridType(templateType);
+    const gridType = get_gridType(templateType) || "highcharts";
+    const templateType =
+      this.props.templateType === ""
+        ? gridTypes.highcharts[
+            (Math.random() * gridTypes.highcharts.length) | 0
+          ]
+        : "";
 
     return (
       <div>
@@ -53,14 +58,7 @@ export default class App extends React.Component {
             case "carousel":
               return <p props={this.props}>{templateType} </p>;
             default:
-              return (
-                <TemplateChart
-                  type={templateType}
-                  ref={chart => {
-                    this.ref_HighChart = chart;
-                  }}
-                />
-              );
+              return <p props={this.props}>{templateType} </p>;
           }
         })()}
       </div>
