@@ -3,12 +3,6 @@ import ReactDOM from "react-dom";
 
 import AddRemoveLayout from "./Dynamic-add-remove.2";
 
-import { DragDropContextProvider } from "react-dnd";
-import HTML5Backend from "react-dnd-html5-backend";
-import Dustbin from "../Single Target/Dustbin";
-import Toolbox from "../Single Target/Toolbox";
-import HTMLDnD from "../HTML5 DnD";
-
 const style = { overflow: "hidden", clear: "both" };
 
 export default class App extends React.Component {
@@ -35,7 +29,6 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <DragDropContextProvider backend={HTML5Backend}>
         <div className="container-fluid">
           <div className="row">
             <div className="col-10" style={style}>
@@ -45,7 +38,6 @@ export default class App extends React.Component {
             <div className="col-2" style={style} />
           </div>
         </div>
-      </DragDropContextProvider>
     );
   }
 }

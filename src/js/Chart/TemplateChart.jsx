@@ -3,9 +3,8 @@ import { render } from "react-dom";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 
-let myVar = 0;
-
 import { resizeHChart, findAncestor, debounce } from "../commonFns";
+let myVar = 0;
 
 export class TemplateChart extends React.Component {
   constructor() {

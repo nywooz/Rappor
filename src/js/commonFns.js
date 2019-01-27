@@ -26,9 +26,17 @@ export const debounce = (fn, time) => {
 };
 
 export function resizeHChart(ref_HighChart) {
-  if (!ref_HighChart || !ref_HighChart.container) return;
+  if (
+    !ref_HighChart ||
+    !ref_HighChart.container ||
+    !ref_HighChart.container.current
+  )
+    return;
 
-  const gridItem = findAncestor(ref_HighChart.container, "react-grid-item");
+  const gridItem = findAncestor(
+    ref_HighChart.container.current,
+    "react-grid-item"
+  );
   if (!gridItem) return;
 
   const chart = ref_HighChart.chart;

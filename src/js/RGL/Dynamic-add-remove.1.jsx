@@ -9,7 +9,7 @@ const originalLayout = getFromLS("items") || [];
  * This layout demonstrates how to use a grid with a dynamic number of elements.
  */
 
-export default class AddRemoveLayout extends React.Component  {
+export default class AddRemoveLayout extends React.PureComponent {
   static defaultProps = {
     className: "layout",
     cols: { lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 },
@@ -35,14 +35,6 @@ export default class AddRemoveLayout extends React.Component  {
       newCounter: 0
     };
     this.canvasRef = React.createRef();
-
-    this.onDragStart = this.onDragStart.bind(this);
-    this.onDrag = this.onDrag.bind(this);
-    this.onDragStop = this.onDragStop.bind(this);
-    this.onResizeStart = this.onResizeStart.bind(this);
-    this.onResize = this.onResize.bind(this);
-    this.onResizeStop = this.onResizeStop.bind(this);
-    this.toolboxDrop = this.toolboxDrop.bind(this);
 
     this.onLayoutChange = this.onLayoutChange.bind(this);
     this.onAddItem = this.onAddItem.bind(this);
@@ -131,12 +123,6 @@ export default class AddRemoveLayout extends React.Component  {
 
         <ResponsiveReactGridLayout
           ref={this.canvasRef}
-          onDragStart={this.onDragStart}
-          onDrag={this.onDrag}
-          onDragStop={this.onDragStop}
-          onResizeStart={this.onResizeStart}
-          onResize={this.onResize}
-          onResizeStop={this.onResizeStop}
           onLayoutChange={this.onLayoutChange}
           onBreakpointChange={this.onBreakpointChange}
           {...this.props}

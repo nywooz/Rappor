@@ -4,11 +4,9 @@ import ReactDOM from "react-dom";
 import React, { Component } from "react";
 import { WidthProvider, Responsive } from "react-grid-layout";
 import _ from "lodash";
+import FontAwesomeIcon from "@fortawesome/react-fontawesome";
+
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
-
-
-
-
 
 const buttonStyle = {
   marginRight: 10
@@ -53,23 +51,11 @@ const style = {
   }
 };
 
-
-
-
-
-
-
-
-import FontAwesomeIcon from "@fortawesome/react-fontawesome";
-
 class ReactGridLayoutBuilderDemo extends React.Component {
   constructor(props) {
     super(props);
   }
 
-  onDragStart(layout, oldItem, newItem, placeholder, e, element) {}
-  onDrag(layout, oldItem, newItem, placeholder, e, element) {}
-  onDragStop(layout, oldItem, newItem, placeholder, e, element) {}
   onResizeStart(layout, oldItem, newItem, placeholder, e, element) {}
   onResizeStart(layout, oldItem, newItem, placeholder, e, element) {}
   onResize(layout, oldItem, newItem, placeholder, e, element) {}
@@ -77,15 +63,11 @@ class ReactGridLayoutBuilderDemo extends React.Component {
   onWidthChange(layout, oldItem, newItem, placeholder, e, element) {}
 
   activateMenu(i) {
-    event.preventDefault();
-    // const el = ReactDOM.findDOMNode(event.target);
+    const el = ReactDOM.findDOMNode(this._divItem);
 
-    // const el = ReactDOM.findDOMNode(this._divItem);
-
-    // const txtSpan = this._divItem.querySelector(".text");
-    // txtSpan.textContent;
-    // console.log(txtSpan.textContent);
-    // debugger;
+    const txtSpan = this._divItem.querySelector(".text");
+    console.log(txtSpan.textContent);
+    //
   }
 
   createElement(l, index) {
@@ -125,15 +107,13 @@ class ReactGridLayoutBuilderDemo extends React.Component {
         ref={this.props.inputRef}
       >
         <div className="row" style={{ background: handleBackgrnd, height: 30 }}>
-          <div className="col-1" style={style.middlesvg}>
-          </div>
+          <div className="col-1" style={style.middlesvg} />
 
           <div className="col" style={style.title} title={i}>
             {l.static ? "Static - " + i : i}
           </div>
 
-          <div style={style.menuIcon} className="col-1" title="Menu">         
-          </div>
+          <div style={style.menuIcon} className="col-1" title="Menu" />
         </div>
 
         <div
@@ -168,14 +148,10 @@ class ReactGridLayoutBuilderDemo extends React.Component {
   render() {
     return (
       <div>
-
         <ResponsiveReactGridLayout
           {...this.props.conf}
           updateConfigFunc={this.props.updateConfig}
           onLayoutChange={this.props.onLayoutChange}
-          onDragStart={this.onDragStart}
-          onDrag={this.onDrag}
-          onDragStop={this.onDragStop}
           onResizeStart={this.onResizeStart}
           onResize={this.onResize}
           onResizeStop={this.onResizeStop}
@@ -187,7 +163,6 @@ class ReactGridLayoutBuilderDemo extends React.Component {
     );
   }
 }
-module.exports = ReactGridLayoutBuilderDemo;
 
 function generateLayout() {
   return _.map(_.range(0, 6), function(item, i) {
@@ -211,13 +186,13 @@ const originalLayout =
 const layoutMap = getFromLS("layoutMap", "rglb-2") || [];
 
 const defaultReactGridLayoutProps = {
-   preventCollision: false,
+  preventCollision: false,
   // compactType: null,
   showGenLayout: false,
   //draggableHandle: ".title-handle",
   layoutMap: layoutMap,
   layouts: {
-    lg: originalLayout
+    lg: [] || originalLayout
   },
   // verticalCompact: null,  //will deprecate, so do not use
   newCounter: 0,
@@ -227,10 +202,10 @@ const defaultReactGridLayoutProps = {
   cols: { lg: 12, md: 12, sm: 12, xs: 12, xxs: 12 }
 };
 
-class App extends React.Component {
+export default class RGL extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {...defaultReactGridLayoutProps, ...this.props};
+    this.state = { ...defaultReactGridLayoutProps, ...this.props };
     this.onAddItem = this.onAddItem.bind(this);
     this.resetLayout = this.resetLayout.bind(this);
     this.onNewLayout = this.onNewLayout.bind(this);
@@ -281,7 +256,6 @@ class App extends React.Component {
   };
 
   get_gridItem_iContent = (layoutItem, dataInfo) => {
-
     let tileContent = layoutItem.i;
 
     const layoutMapItemIndex = this.state.layoutMap.findIndex(
@@ -309,61 +283,13 @@ class App extends React.Component {
       highchartOptions.chart.width = null;
       highchartOptions.chart.height = layoutItem.h * this.state.rowHeight - 30;
 
-      tileContent = <ReactHighcharts options={highchartOptions} />;
+      // tileContent = <ReactHighcharts options={highchartOptions} />;
     }
-    //  old version
-    // const module_indx = dataInfo.findIndex(function(item) {
-    //   return layoutMapInfo.dataModule === item.module;
-    // });
-    // const data = dataInfo[module_indx].data;
-    // const dataIndex = data.findIndex(item => item.UID === layoutMapInfo.UID);
-
-    // const newTxtContent =
-    //   dataIndex == -1
-    //     ? tileContent
-    //     : dataInfo[module_indx].data[dataIndex].name;
-
-    //  https://stackoverflow.com/questions/42037369/how-to-edit-an-item-in-a-state-array
-    // let newLayout = this.state.layouts.lg.slice(); //copy the array
-    // newLayout[tileIndex].i = newTxtContent; //execute the manipulations
 
     return tileContent;
   };
 
-  itemSelected = obj => {
-    // const module = obj.module;
-    // const i = obj.i;
-
-    // const oldLayout = this.state.layouts.lg;
-    // var tileIndex = oldLayout.findIndex(function(item) {
-    //   return obj.i === item.i;
-    // });
-
-    // var module_indx = dataStructure.findIndex(function(item) {
-    //   return obj.module === item.module;
-    // });
-    // const data = dataStructure[module_indx].data;
-    // const dataIndex = data.findIndex(item => item.UID === obj.UID);
-    // const newTxtContent = dataStructure[module_indx].data[dataIndex].name;
-    // //  https://stackoverflow.com/questions/42037369/how-to-edit-an-item-in-a-state-array
-    // // let newLayout = this.state.layouts.lg.slice(); //copy the array
-    // // newLayout[tileIndex].i = newTxtContent; //execute the manipulations
-
-    // const index = this.state.layoutMap.findIndex(
-    //   item => item.i === obj.gridItem_i
-    // );
-    // let action = "edit";
-    // if (index === -1) {
-    //   action = "add";
-    //   obj.gridItem_i = newTxtContent;
-    // } else {
-    //   action = "edit";
-    //   obj.new_gridItem_i = newTxtContent;
-    // }
-
-    // this.updateLayoutMap({ action: action, type: obj });
-    // this.onLayoutChange(oldLayout, this.state.layouts.lg);
-  };
+  itemSelected = obj => {};
 
   updateLayoutMap = obj => {
     const type = obj.type;
@@ -413,25 +339,18 @@ class App extends React.Component {
         layoutMap: newLayoutMap
       });
 
-      // saveToLS("layout", currentLayout, "rglb-1");
       saveToLS("layoutMap", newLayoutMap, "rglb-2");
     }
   };
 
   // AllLayouts are keyed by breakpoint.
   onLayoutChange = (oldLayout, currentLayout, allLayouts) => {
-    this.setState({
-      layouts: {
-        lg: currentLayout
-      }
-    });
-    /*eslint no-console: 0*/
+    // /*eslint no-console: 0*/
     saveToLS("layout", currentLayout, "rglb-1");
     saveToLS("layoutMap", this.state.layoutMap, "rglb-2");
   };
 
   onMenuItemSelected = (i, menuItem_obj) => {
-    debugger;
     const value = menuItem_obj.props.value;
     const txt = menuItem_obj.props.primaryText;
 
@@ -440,9 +359,7 @@ class App extends React.Component {
   };
 
   onTileMenuClick = i => {
-    debugger;
     const txtSpan = this._divItem.querySelector(".text");
-    txtSpan.textContent;
     console.log(txtSpan.textContent);
   };
 
@@ -519,36 +436,35 @@ class App extends React.Component {
       : "";
 
     return (
-        <div className="container-fluid">
-          <div className="row">
-            <div className={gridClss}>
+      <div className="container-fluid">
+        <button onClick={this.onAddItem}>Add Item</button>
 
-
-              <ReactGridLayoutBuilderDemo
-                handleChangeSingle={this.handleChangeSingle}
-                get_gridItem_iContent={this.get_gridItem_iContent}
-                itemSelected={this.itemSelected}
-                conf={this.state}
-                updateConfig={this.updateConfig}
-                onRemoveItem={this.onRemoveItem}
-                onLayoutChange={this.onLayoutChange}
-              />
-            </div>
-
-            {this.state.showGenLayout && (
-              <div className={JsonOutputClss}>
-                <h5>Generated Layout:</h5>
-                <pre>
-                  <code>{JSON.stringify(this.state, null, 2)}</code>
-                </pre>
-              </div>
-            )}
+        <div className="row">
+          <div className={gridClss}>
+            <ReactGridLayoutBuilderDemo
+              handleChangeSingle={this.handleChangeSingle}
+              get_gridItem_iContent={this.get_gridItem_iContent}
+              itemSelected={this.itemSelected}
+              conf={this.state}
+              updateConfig={this.updateConfig}
+              onRemoveItem={this.onRemoveItem}
+              onLayoutChange={this.onLayoutChange}
+            />
           </div>
+
+          {this.state.showGenLayout && (
+            <div className={JsonOutputClss}>
+              <h5>Generated Layout:</h5>
+              <pre>
+                <code>{JSON.stringify(this.state, null, 2)}</code>
+              </pre>
+            </div>
+          )}
         </div>
+      </div>
     );
   }
 }
-module.exports = App;
 
 function getFromLS(prop, key) {
   let ls = {};

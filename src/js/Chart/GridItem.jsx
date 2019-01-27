@@ -2,16 +2,22 @@ import React from "react";
 import { render } from "react-dom";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
-let myVar = 0;
 
 import { gridTypes } from "../../data/Country";
 import { resizeHChart, findAncestor, debounce } from "../commonFns";
 import { iconsTypeMap } from "../RGL/Skeleton";
 import { TemplateChart } from "./TemplateChart";
 
+let myVar = 0;
+
 export default class App extends React.Component {
   constructor() {
     super();
+  }
+
+  componentDidMount() {
+    const ref_HighChart = this.ref_HighChart;
+    resizeHChart(ref_HighChart);
   }
 
   render() {
@@ -49,9 +55,12 @@ export default class App extends React.Component {
               return <p props={this.props}>{templateType} </p>;
             default:
               return (
-                <p props={this.props}>
-                  "New chart, not yet worked on it " + {templateType}{" "}
-                </p>
+                <TemplateChart
+                  type={templateType}
+                  ref={chart => {
+                    this.ref_HighChart = chart;
+                  }}
+                />
               );
           }
         })()}

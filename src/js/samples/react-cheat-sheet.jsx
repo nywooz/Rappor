@@ -43,41 +43,41 @@ class App extends React.Component {
   }
 
   ////////////////////////////////////////////////////
-  componentWillMount() {
-    //Don’t use this
-    // fires immediately before the initial render
-  }
-  componentWillUnmount() {
-    debugger;
-    //  is invoked immediately before a component is unmounted and destroyed
-  }
-  componentDidMount() {
-    debugger;
-    // fires immediately after the initial render
-  }
+  // componentWillMount() {
+  //   //Don’t use this
+  //   // fires immediately before the initial render
+  // }
+  // componentWillUnmount() {
+  //   debugger;
+  //   //  is invoked immediately before a component is unmounted and destroyed
+  // }
+  // componentDidMount() {
+  //   debugger;
+  //   // fires immediately after the initial render
+  // }
 
-  componentWillReceiveProps(nextProps) {
-    debugger;
-    // fires when component is receiving new props
-  }
+  // componentWillReceiveProps(nextProps) {
+  //   debugger;
+  //   // fires when component is receiving new props
+  // }
 
-  shouldComponentUpdate(nextProps, nextState) {
-    debugger;
-    return true;
-    //  Skips render() if returns false, defaults to true
-    // fires before rendering with new props or state
-  }
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   debugger;
+  //   return true;
+  //   //  Skips render() if returns false, defaults to true
+  //   // fires before rendering with new props or state
+  // }
 
-  componentWillUpdate(nextProps, nextState) {
-    debugger;
-    // fires immediately before rendering
-    // with new props or state
-  }
+  // componentWillUpdate(nextProps, nextState) {
+  //   debugger;
+  //   // fires immediately before rendering
+  //   // with new props or state
+  // }
 
-  componentDidUpdate(prevProps, prevState) {
-    debugger;
-    // fires immediately after rendering with new P or S
-  }
+  // componentDidUpdate(prevProps, prevState) {
+  //   debugger;
+  //   // fires immediately after rendering with new P or S
+  // }
 
   //////////////////////////////////////////////////////////
 }
