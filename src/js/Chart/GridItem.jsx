@@ -1,19 +1,9 @@
 import React from "react";
-import { render } from "react-dom";
-import Highcharts from "highcharts";
-import HighchartsReact from "highcharts-react-official";
-
 import { gridTypes } from "../../data/gridTypes";
-import { resizeHChart, findAncestor, debounce } from "../commonFns";
+import { resizeHChart } from "../commonFns";
 import { TemplateChart } from "./TemplateChart";
 
-let myVar = 0;
-
 export default class App extends React.Component {
-  constructor() {
-    super();
-  }
-
   componentDidMount() {
     const ref_HighChart = this.ref_HighChart;
     resizeHChart(ref_HighChart);
@@ -23,12 +13,7 @@ export default class App extends React.Component {
     const cb = function() {};
 
     const gridType = get_gridType(templateType) || "highcharts";
-    const templateType =
-      this.props.templateType === ""
-        ? gridTypes.highcharts[
-            (Math.random() * gridTypes.highcharts.length) | 0
-          ]
-        : "";
+    const { templateType } = this.props;
 
     return (
       <div>

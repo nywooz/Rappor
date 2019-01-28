@@ -2,7 +2,7 @@ import React from "react";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 
-import { resizeHChart, debounce } from "../commonFns";
+import { resizeHChart } from "../commonFns";
 let myVar = 0;
 
 export class TemplateChart extends React.Component {
@@ -11,7 +11,7 @@ export class TemplateChart extends React.Component {
     this.state = { data: [] };
     myVar = setInterval(
       () => this.setState({ data: [...Array(3)].map(Math.random) }),
-      6500
+      3000
     );
   }
 
@@ -43,6 +43,9 @@ export class TemplateChart extends React.Component {
             type: type,
             animation: true,
             events: { load: cb }
+          },
+          credits: {
+            enabled: false
           }
         }}
       />

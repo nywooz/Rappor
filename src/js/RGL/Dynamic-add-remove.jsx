@@ -1,8 +1,8 @@
-import React, { Component } from "react";
+import React from "react";
 
 import { WidthProvider, Responsive } from "react-grid-layout";
 import _ from "lodash";
-import { iconsTypeMap } from "../../data/gridTypes";
+import { iconsTypeMap, gridTypes } from "../../data/gridTypes";
 import { newGUID } from "../commonFns";
 import GridItem from "../Chart/GridItem";
 import FloatingActionButton from "../FloatingActionButton";
@@ -42,7 +42,16 @@ export default class AddRemoveLayout extends React.PureComponent {
   }
 
   createElement(el) {
-    const removeStyle = {};
+    const removeStyle = {
+      position: "absolute",
+      width: 20,
+      height: 20,
+      top: 0,
+      right: 0,
+      paddingTop: 3,
+      paddingRight: 3,
+      paddingLeft: 3
+    };
 
     const contentStyle = {
       height: "inherit"
@@ -100,17 +109,18 @@ export default class AddRemoveLayout extends React.PureComponent {
   }
 
   onAddItem(name = "") {
-    const chartType = typeof name === "string" ? iconsTypeMap[name] : "";
+    const chartType =
+      typeof name === "string" && name.length !== 0
+        ? iconsTypeMap[name]
+        : gridTypes.highcharts[
+            (Math.random() * gridTypes.highcharts.length) | 0
+          ];
+
     const uid = newGUID();
     let i = uid;
 
     const oldLayout = this.state.items;
-    var tileIndex = oldLayout.findIndex(function(item) {
-      return i === item.i;
-    });
-
     const width = 2;
-
     const newItem = {
       i: i,
       x: (this.state.items.length * width) % (this.state.cols || 12),
