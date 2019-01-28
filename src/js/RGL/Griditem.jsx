@@ -1,10 +1,6 @@
 import React from "react";
-import { render } from "react-dom";
-import Highcharts from "highcharts";
-import HighchartsReact from "highcharts-react-official";
 
-import Highchart1 from "../Chart/Demo/HighChart";
-import Highchart2 from "../Chart/Demo/HighChart2";
+import Highchart1 from "../Chart/HighChart";
 
 export default class App extends React.Component {
   constructor() {
