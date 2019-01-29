@@ -41,8 +41,7 @@ export function resizeHChart(ref_HighChart) {
 
   const chart = ref_HighChart.chart;
   //chart.setSize(null, null);
-
-  chart.setSize(gridItem.offsetWidth - 20, gridItem.offsetHeight - 20, false);
+  chart.setSize(gridItem.offsetWidth - 20, gridItem.offsetHeight - 48, false);
   // chart.setSize(null);
   // chart.setSize(null, null);
 

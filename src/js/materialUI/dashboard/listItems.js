@@ -50,12 +50,6 @@ export const mainListItems = (
     </ListItem>
 
     <ListItem button>
-      <Link to="/signIn" style={{ textDecoration: "none" }}>
-        signIn
-      </Link>
-    </ListItem>
-
-    <ListItem button>
       <Link to="/dashboard" style={{ textDecoration: "none" }}>
         dashboard
       </Link>
@@ -83,6 +77,33 @@ export const secondaryListItems = (
         <AssignmentIcon />
       </ListItemIcon>
       <ListItemText primary="Year-end sale" />
+    </ListItem>
+  </div>
+);
+
+export const thirdListItems = (
+  <div>
+    <ListSubheader inset>Data Sets</ListSubheader>
+   
+    <ListItem button>
+      <ListItemIcon>
+        <AssignmentIcon />
+      </ListItemIcon>
+      <ListItemText primary="Sales Report" />
+    </ListItem>
+
+    <ListItem button>
+      <ListItemIcon>
+        <AssignmentIcon />
+      </ListItemIcon>
+      <ListItemText primary="Marketing" />
+    </ListItem>
+
+    <ListItem button>
+      <ListItemIcon>
+        <AssignmentIcon />
+      </ListItemIcon>
+      <ListItemText primary="Finance" />
     </ListItem>
   </div>
 );
