@@ -2,10 +2,11 @@ import React from "react";
 
 import { WidthProvider, Responsive } from "react-grid-layout";
 import _ from "lodash";
-import { iconsTypeMap, gridTypes } from "../../data/gridTypes";
-import { newGUID } from "../commonFns";
-import GridItem from "../Chart/GridItem";
-import FloatingActionButton from "../FloatingActionButton";
+import { iconsTypeMap, gridTypes } from "../data/gridTypes";
+import { newGUID } from "./commonFns";
+import GridItem from "./Chart/GridItem";
+import FloatingActionButton from "./FloatingActionButton";
+import TileMenu from "./TileMenu";
 
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
 const layout = getFromLS("items", "rgl-7") || [];
@@ -71,9 +72,11 @@ export default class AddRemoveLayout extends React.PureComponent {
         data-grid={el}
         className="container-fluid"
       >
+        <TileMenu />
+
         <div className="row">
           <div className="col-8" />
-          <div className="col-2">edit</div>
+          <div className="col-2" />
           <div
             className="col-2"
             style={removeStyle}
