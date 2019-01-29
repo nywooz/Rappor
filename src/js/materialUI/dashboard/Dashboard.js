@@ -2,7 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
 import { withStyles } from "@material-ui/core/styles";
-import CssBaseline from "@material-ui/core/CssBaseline";
 
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import Switch from "@material-ui/core/Switch";
@@ -27,6 +26,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
 import MailIcon from "@material-ui/icons/Mail";
 import Button from "@material-ui/core/Button";
+import withRoot from "../../withRoot";
 
 const drawerWidth = 240;
 
@@ -122,15 +122,15 @@ class Dashboard extends React.Component {
     this.setState({ open: false });
   };
 
-  handleChange = event => {
+  toggleLogin = event => {
     this.setState({ auth: event.target.checked });
   };
 
-  handleMenu = event => {
+  handleProfileMenu = event => {
     this.setState({ anchorEl: event.currentTarget });
   };
 
-  handleClose = () => {
+  handleProfileClose = () => {
     this.setState({ anchorEl: null });
   };
 
@@ -141,8 +141,6 @@ class Dashboard extends React.Component {
 
     return (
       <div className={classes.root}>
-        <CssBaseline />
-
         <AppBar
           position="absolute"
           className={classNames(
@@ -193,7 +191,7 @@ class Dashboard extends React.Component {
                 <IconButton
                   aria-owns={openavatar ? "menu-appbar" : undefined}
                   aria-haspopup="true"
-                  onClick={this.handleMenu}
+                  onClick={this.handleProfileMenu}
                   color="inherit"
                 >
                   <AccountCircle />
@@ -210,18 +208,24 @@ class Dashboard extends React.Component {
                     horizontal: "right"
                   }}
                   open={openavatar}
-                  onClose={this.handleClose}
+                  onClose={this.handleProfileClose}
                 >
-                  <MenuItem onClick={this.handleClose}>Profile</MenuItem>
-                  <MenuItem onClick={this.handleClose}>My account</MenuItem>
+                  <MenuItem onClick={this.handleProfileClose}>Profile</MenuItem>
+                  <MenuItem onClick={this.handleProfileClose}>
+                    My account
+                  </MenuItem>
                 </Menu>
               </div>
             )}
 
-            {!auth && <Button color="inherit">Login</Button>}
-            
+            {!auth && (
+              <Button color="inherit" href="/signIn">
+                Login
+              </Button>
+            )}
           </Toolbar>
         </AppBar>
+
         <Drawer
           variant="permanent"
           classes={{
@@ -237,11 +241,16 @@ class Dashboard extends React.Component {
               <ChevronLeftIcon />
             </IconButton>
           </div>
+
           <Divider />
+
           <List>{mainListItems}</List>
+
           <Divider />
+
           <List>{secondaryListItems}</List>
         </Drawer>
+
         <main className={classes.content}>
           <div className={classes.appBarSpacer} />
 
@@ -250,7 +259,7 @@ class Dashboard extends React.Component {
               control={
                 <Switch
                   checked={auth}
-                  onChange={this.handleChange}
+                  onChange={this.toggleLogin}
                   aria-label="LoginSwitch"
                 />
               }
@@ -280,4 +289,4 @@ Dashboard.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(Dashboard);
+export default withRoot(withStyles(styles)(Dashboard));
