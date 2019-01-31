@@ -19,7 +19,11 @@ import Badge from "@material-ui/core/Badge";
 import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import NotificationsIcon from "@material-ui/icons/Notifications";
-import { mainListItems, secondaryListItems, thirdListItems } from "./listItems";
+import Navigator, {
+  mainListItems,
+  secondaryListItems,
+  thirdListItems
+} from "./listItems";
 import SimpleLineChart from "./SimpleLineChart";
 import SimpleTable from "./SimpleTable";
 import MenuItem from "@material-ui/core/MenuItem";
@@ -27,6 +31,7 @@ import Menu from "@material-ui/core/Menu";
 import MailIcon from "@material-ui/icons/Mail";
 import Button from "@material-ui/core/Button";
 import withRoot from "../../withRoot";
+import Hidden from "@material-ui/core/Hidden";
 
 const drawerWidth = 240;
 
@@ -37,13 +42,7 @@ const styles = theme => ({
   toolbar: {
     paddingRight: 24 // keep right padding when drawer closed
   },
-  toolbarIcon: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "flex-end",
-    padding: "0 8px",
-    ...theme.mixins.toolbar
-  },
+
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
     transition: theme.transitions.create(["width", "margin"], {
@@ -97,7 +96,7 @@ const styles = theme => ({
     overflow: "auto"
   },
   chartContainer: {
-    marginLeft: -22
+    // marginLeft: -22
   },
   tableContainer: {
     height: 320
@@ -111,15 +110,16 @@ class Dashboard extends React.Component {
   state = {
     open: true,
     auth: true,
-    anchorEl: null
+    anchorEl: null,
+    mobileOpen: false
   };
 
-  handleDrawerOpen = () => {
-    this.setState({ open: true });
+  handleDrawerToggle = () => {
+    this.setState({ open: !this.state.open });
   };
 
-  handleDrawerClose = () => {
-    this.setState({ open: false });
+  handleDrawerToggle = () => {
+    this.setState({ open: !this.state.open });
   };
 
   toggleLogin = event => {
@@ -155,7 +155,7 @@ class Dashboard extends React.Component {
             <IconButton
               color="inherit"
               aria-label="Open drawer"
-              onClick={this.handleDrawerOpen}
+              onClick={this.handleDrawerToggle}
               className={classNames(
                 classes.menuButton,
                 this.state.open && classes.menuButtonHidden
@@ -236,22 +236,9 @@ class Dashboard extends React.Component {
           }}
           open={this.state.open}
         >
-          <div className={classes.toolbarIcon}>
-            <IconButton onClick={this.handleDrawerClose}>
-              <ChevronLeftIcon />
-            </IconButton>
-          </div>
-
-          <Divider />
-
-          <List>{mainListItems}</List>
-
-          <Divider />
-
-          <List>{secondaryListItems}</List>
-
-          <Divider />
-          <List>{thirdListItems}</List>
+          <Navigator
+            handleDrawerToggle={this.handleDrawerToggle}
+          />
         </Drawer>
 
         <main className={classes.content}>
@@ -279,6 +266,7 @@ class Dashboard extends React.Component {
           <Typography variant="h4" gutterBottom component="h2">
             Products
           </Typography>
+
           <div className={classes.tableContainer}>
             <SimpleTable />
           </div>
