@@ -118,7 +118,7 @@ const categories = [
       { id: "Register", icon: <DashboardIcon />, linkTo: "/" },
       { id: "Forgot Password", icon: <DashboardIcon />, linkTo: "/" },
       { id: "Charts", icon: <DashboardIcon />, linkTo: "/" },
-      { id: "Table", icon: <DashboardIcon />, linkTo: "/" },
+      { id: "Table", icon: <DashboardIcon />, linkTo: "/searchInput" },
       { id: "404 Page", icon: <DashboardIcon />, linkTo: "/randompage" },
       { id: "Blank Page", icon: <DashboardIcon />, linkTo: "/Blank" }
     ]

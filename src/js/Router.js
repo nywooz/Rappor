@@ -7,6 +7,7 @@ import SignIn from "./materialUI/SignIn";
 import RGL from "./Dynamic-add-remove";
 import PaperBase from "./paperbase/PaperBase";
 import Blank from "./pages/Blank";
+import SearchInput from "./components/SearchInput";
 
 const Router = () => (
   <BrowserRouter>
@@ -16,6 +17,7 @@ const Router = () => (
       <Route path="/dashboard" component={RGL} />
       <Route path="/paperbase" component={PaperBase} />
       <Route path="/blank" component={Blank} />
+      <Route path="/searchInput" component={SearchInput} />
       <Route path="/materialui" component={Index} />
 
       <Route component={NotFound} />
