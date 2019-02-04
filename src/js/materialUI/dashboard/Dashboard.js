@@ -42,7 +42,6 @@ const styles = theme => ({
   toolbar: {
     paddingRight: 24 // keep right padding when drawer closed
   },
-
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
     transition: theme.transitions.create(["width", "margin"], {

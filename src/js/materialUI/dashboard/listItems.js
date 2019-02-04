@@ -46,7 +46,7 @@ const styles = theme => ({
   },
 
   categoryHeaderPrimary: {
-    // color: theme.palette.common.white
+    color: "rgb(204, 204, 204)"
   },
   item: {
     paddingTop: 4,
@@ -54,7 +54,7 @@ const styles = theme => ({
     // color: "rgba(255, 255, 255, 0.7)"
   },
   itemCategory: {
-    // backgroundColor: theme.mixins.toolbar,
+    backgroundColor: theme.mixins.toolbar,
     paddingTop: 16,
     paddingBottom: 16
   },
@@ -65,7 +65,7 @@ const styles = theme => ({
     }
   },
   itemActiveItem: {
-    color: "#4fc3f7"
+    backgroundColor: "rgb(188, 188, 188)"
   },
   itemPrimary: {
     color: "inherit",
@@ -118,7 +118,8 @@ const categories = [
       { id: "Register", icon: <DashboardIcon />, linkTo: "/" },
       { id: "Forgot Password", icon: <DashboardIcon />, linkTo: "/" },
       { id: "Charts", icon: <DashboardIcon />, linkTo: "/" },
-      { id: "Table", icon: <DashboardIcon />, linkTo: "/searchInput" },
+      { id: "Table", icon: <DashboardIcon />, linkTo: "/" },
+      { id: "searchInput", icon: <DashboardIcon />, linkTo: "/searchInput" },
       { id: "404 Page", icon: <DashboardIcon />, linkTo: "/randompage" },
       { id: "Blank Page", icon: <DashboardIcon />, linkTo: "/Blank" }
     ]
