@@ -10,3 +10,8 @@
 // $btn-border-radius: 50px;
 
 // $body-bg: rgb(185, 42, 42);
+
+button:focus {
+  outline: 1px dotted;
+  outline: unset !important;
+}

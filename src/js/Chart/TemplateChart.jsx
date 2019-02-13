@@ -3,13 +3,12 @@ import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 
 import { resizeHChart } from "../commonFns";
-let myVar = 0;
 
 export class TemplateChart extends React.Component {
   constructor() {
     super();
     this.state = { data: [] };
-    myVar = setInterval(
+    this.intervalId = setInterval(
       () => this.setState({ data: [...Array(3)].map(Math.random) }),
       3000
     );
@@ -21,7 +20,7 @@ export class TemplateChart extends React.Component {
   }
 
   componentWillUnmount() {
-    clearInterval(myVar);
+    clearInterval(this.intervalId);
   }
 
   render() {

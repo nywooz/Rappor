@@ -4,14 +4,11 @@ import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 
-const options = [
-  "Edit",
-  "Delete"  
-];
+const options = ["Edit", "Toggle Static", "Delete"];
 
 const ITEM_HEIGHT = 48;
 
-class LongMenu extends React.Component {
+class TileMenu extends React.Component {
   state = {
     anchorEl: null
   };
@@ -22,6 +19,12 @@ class LongMenu extends React.Component {
 
   handleClose = () => {
     this.setState({ anchorEl: null });
+  };
+
+  handleMenuItemClick = (event, option) => {
+
+      console.log(option);
+    this.handleClose();
   };
 
   render() {
@@ -36,11 +39,10 @@ class LongMenu extends React.Component {
           aria-haspopup="true"
           onClick={this.handleClick}
         >
-          <MoreVertIcon />
+          <MoreVertIcon style={{ fontSize: 16 }} />
         </IconButton>
 
         <Menu
-          id="long-menu"
           anchorEl={anchorEl}
           open={open}
           onClose={this.handleClose}
@@ -55,7 +57,7 @@ class LongMenu extends React.Component {
             <MenuItem
               key={option}
               selected={option === "Pyxis"}
-              onClick={this.handleClose}
+              onClick={event => this.handleMenuItemClick(event, option)}
             >
               {option}
             </MenuItem>
@@ -66,4 +68,4 @@ class LongMenu extends React.Component {
   }
 }
 
-export default LongMenu;
+export default TileMenu;

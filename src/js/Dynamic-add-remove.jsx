@@ -7,6 +7,8 @@ import { newGUID } from "./commonFns";
 import GridItem from "./Chart/GridItem";
 import FloatingActionButton from "./FloatingActionButton";
 import TileMenu from "./TileMenu";
+import IconButton from "@material-ui/core/IconButton";
+import DeleteIcon from "@material-ui/icons/Delete";
 
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
 const layout = getFromLS("items", "rgl-7") || [];
@@ -35,25 +37,24 @@ export default class AddRemoveLayout extends React.PureComponent {
     this.onBreakpointChange = this.onBreakpointChange.bind(this);
   }
 
-  get_grid_item_info(el) {
+  get_grid_item_info = el => {
     const item_info = this.state.layoutMap.find(function(item) {
       return el.i === item.i;
     });
     return item_info ? item_info : { uid: newGUID() };
-  }
+  };
 
-  createElement(el) {
-    const removeStyle = {
-      position: "absolute",
-      width: 20,
-      height: 20,
-      top: 0,
-      right: 0,
-      paddingTop: 3,
-      paddingRight: 3,
-      paddingLeft: 3
-    };
+  onToggleStatic = i => {
+    let newLayout = this.state.layout.slice(0);
+    const index = newLayout.findIndex(item => item.i === i);
+    if (index === -1) return;
+    const prevStaticVal = newLayout[index].static;
+    newLayout[index].static = !prevStaticVal;
+    this.setState({ layout: newLayout });
+    saveToLS("items", layout, "rgl-7");
+  };
 
+  createElement = el => {
     const contentStyle = {
       height: "inherit"
     };
@@ -64,54 +65,63 @@ export default class AddRemoveLayout extends React.PureComponent {
 
     const item_info = this.get_grid_item_info(el);
     const item_key = item_info.uid;
-
     return (
       <div
         style={{ height: "100%", width: "100%", position: "absolute" }}
         key={item_key}
         data-grid={el}
-        className="container-fluid"
       >
-        <TileMenu />
-
-        <div className="row">
-          <div className="col-8" />
-          <div className="col-2" />
-          <div
-            className="col-2"
-            style={removeStyle}
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "flex-end",
+            padding: "2px"
+          }}
+        >
+          <IconButton
+            aria-label="Delete"
+            style={{ display: "inline-block" }}
             onClick={this.onRemoveItem.bind(this, i)}
           >
-            x
+            <DeleteIcon style={{ fontSize: 16 }} />
+          </IconButton>
+          <div style={{ display: "inline-block" }}>
+            <i
+              className="far fa-thumbtack"
+              onClick={this.onToggleStatic.bind(this, i)}
+            >
+              toggle
+            </i>
           </div>
         </div>
-        <div className="w-100" />
 
-        <div className="row" style={contentStyle}>
-          {el.add ? (
-            <div
-              className="add text"
-              onClick={this.onAddItem}
-              title="You can add an item by clicking here, too."
-            >
-              Add +
-            </div>
-          ) : (
-            <div style={contentStyle}>
-              <GridItem
-                ref={chart => {
-                  this.ref_HighChart = chart;
-                }}
-                templateType={item_info.type}
-              />
-            </div>
-          )}
+        <div className="container-fluid">
+          <div className="row" style={contentStyle}>
+            {el.add ? (
+              <div
+                className="add text"
+                onClick={this.onAddItem}
+                title="You can add an item by clicking here, too."
+              >
+                Add +
+              </div>
+            ) : (
+              <div style={contentStyle}>
+                <GridItem
+                  ref={chart => {
+                    this.ref_HighChart = chart;
+                  }}
+                  templateType={item_info.type}
+                />
+              </div>
+            )}
+          </div>
         </div>
       </div>
     );
-  }
+  };
 
-  onAddItem(name = "") {
+  onAddItem = (name = "") => {
     const chartType =
       typeof name === "string" && name.length !== 0
         ? iconsTypeMap[name]
@@ -146,15 +156,15 @@ export default class AddRemoveLayout extends React.PureComponent {
       newCounter: this.state.newCounter + 1,
       layoutMap: all_MappedItem
     });
-  }
+  };
 
   // We're using the cols coming back from this to calculate where to add new items.
-  onBreakpointChange(breakpoint, cols) {
+  onBreakpointChange = (breakpoint, cols) => {
     this.setState({
       breakpoint: breakpoint,
       cols: cols
     });
-  }
+  };
 
   onLayoutChange = layout => {
     const changedLayout =
@@ -167,7 +177,7 @@ export default class AddRemoveLayout extends React.PureComponent {
     saveToLS("layoutMap", this.state.layoutMap, "rgl-7.1");
   };
 
-  onRemoveItem(i) {
+  onRemoveItem = i => {
     const oldItems = this.state.items;
     const newItems = _.reject(oldItems, { i: i });
 
@@ -177,7 +187,7 @@ export default class AddRemoveLayout extends React.PureComponent {
       action: "remove",
       type: { UID: null, module: null, i: i, gridItem_i: i }
     });
-  }
+  };
 
   updateLayoutMap = obj => {
     const type = obj.type;
