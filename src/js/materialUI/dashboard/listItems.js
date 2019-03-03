@@ -133,11 +133,31 @@ const categories = [
         active: false,
         linkTo: "/materialui"
       },
-      { id: "Cards", icon: <DashboardIcon />, linkTo: "/" },
-      { id: "Panels", icon: <DashboardIcon />, linkTo: "/" },
-      { id: "Modals", icon: <DashboardIcon />, linkTo: "/" },
-      { id: "Notifications", icon: <DashboardIcon />, linkTo: "/" },
-      { id: "Accordion", icon: <DashboardIcon />, linkTo: "/" }
+      {
+        id: "Cards",
+        icon: <DashboardIcon />,
+        linkTo: "/materialui1"
+      },
+      {
+        id: "Panels",
+        icon: <DashboardIcon />,
+        linkTo: "/materialui2"
+      },
+      {
+        id: "Modals",
+        icon: <DashboardIcon />,
+        linkTo: "/materialui3"
+      },
+      {
+        id: "Notifications",
+        icon: <DashboardIcon />,
+        linkTo: "/materialui4"
+      },
+      {
+        id: "Misc",
+        icon: <DashboardIcon />,
+        linkTo: "/materialui5"
+      }
     ]
   }
 ];
