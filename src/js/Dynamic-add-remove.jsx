@@ -52,7 +52,7 @@ export default class AddRemoveLayout extends React.PureComponent {
     const prevStaticVal = newLayout[index].static;
     newLayout[index].static = !prevStaticVal;
     this.setState({ layout: newLayout });
-    saveToLS("items", layout, "rgl-7");
+    saveToLS("items", newLayout, "rgl-7");
   };
 
   createElement = el => {
