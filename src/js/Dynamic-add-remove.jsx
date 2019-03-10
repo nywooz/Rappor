@@ -9,6 +9,7 @@ import FloatingActionButton from "./FloatingActionButton";
 import TileMenu from "./TileMenu";
 import IconButton from "@material-ui/core/IconButton";
 import DeleteIcon from "@material-ui/icons/Delete";
+import FAIcon from "./FAIcon";
 
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
 const layout = getFromLS("items", "rgl-7") || [];
@@ -65,6 +66,7 @@ export default class AddRemoveLayout extends React.PureComponent {
 
     const item_info = this.get_grid_item_info(el);
     const item_key = item_info.uid;
+
     return (
       <div
         style={{ height: "100%", width: "100%", position: "absolute" }}
@@ -85,14 +87,27 @@ export default class AddRemoveLayout extends React.PureComponent {
           >
             <DeleteIcon style={{ fontSize: 16 }} />
           </IconButton>
-          <div style={{ display: "inline-block" }}>
-            <i
-              className="far fa-thumbtack"
-              onClick={this.onToggleStatic.bind(this, i)}
-            >
-              toggle
-            </i>
-          </div>
+
+          <IconButton
+            aria-label="Toggle Static"
+            style={{ display: "inline-block", width: "40px" }}
+            onClick={this.onToggleStatic.bind(this, i)}
+          >
+            {el.static ? (
+              <FAIcon
+                style={{ fontSize: 16 }}
+                icon={["fa", "thumbtack"]}
+                size="xs"
+                rotation={90}
+              />
+            ) : (
+              <FAIcon
+                style={{ fontSize: 16 }}
+                icon={["fa", "thumbtack"]}
+                size="xs"
+              />
+            )}
+          </IconButton>
         </div>
 
         <div className="container-fluid">
