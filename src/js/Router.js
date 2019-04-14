@@ -4,8 +4,8 @@ import NotFound from "./pages/NotFound";
 import Dashboard from "./materialUI/dashboard/Dashboard";
 
 import MuiBtns from "./materialUI/MaterialUITest";
-import cards from "./materialUI/MaterialUICards";
-
+import Cards from "./materialUI/MaterialUICards";
+import Panels from "./materialUI/MaterialUIPanels";
 
 import SignIn from "./materialUI/SignIn";
 import RGL from "./Dynamic-add-remove";
@@ -23,10 +23,8 @@ const Router = () => (
       <Route path="/blank" component={Blank} />
       <Route path="/searchInput" component={SearchInput} />
       <Route path="/materialui" component={MuiBtns} />
-      <Route path="/materialui1" component={cards} />
-      <Route path="/materialui2" component={MuiBtns} />
-      <Route path="/materialui3" component={MuiBtns} />
-      <Route path="/materialui4" component={MuiBtns} />
+      <Route path="/materialui1" component={Cards} />
+      <Route path="/materialui2" component={Panels} />
       <Route path="/materialui5" component={MuiBtns} />
 
       <Route component={NotFound} />

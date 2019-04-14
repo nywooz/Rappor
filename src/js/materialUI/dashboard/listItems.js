@@ -144,16 +144,6 @@ const categories = [
         linkTo: "/materialui2"
       },
       {
-        id: "Modals",
-        icon: <DashboardIcon />,
-        linkTo: "/materialui3"
-      },
-      {
-        id: "Notifications",
-        icon: <DashboardIcon />,
-        linkTo: "/materialui4"
-      },
-      {
         id: "Misc",
         icon: <DashboardIcon />,
         linkTo: "/materialui5"
