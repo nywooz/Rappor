@@ -6,29 +6,16 @@ import { withStyles } from "@material-ui/core/styles";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import ListSubheader from "@material-ui/core/ListSubheader";
 import DashboardIcon from "@material-ui/icons/Dashboard";
-import FolderIcon from "@material-ui/icons/Folder";
-import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
-import PeopleIcon from "@material-ui/icons/People";
 import BarChartIcon from "@material-ui/icons/BarChart";
+import TableIcon from "@material-ui/icons/TableChart";
 import LayersIcon from "@material-ui/icons/Layers";
-import AssignmentIcon from "@material-ui/icons/Assignment";
-import Storage from "@material-ui/icons/Storage";
-import Widgets from "@material-ui/icons/Widgets";
 import Extension from "@material-ui/icons/Extension";
 import Divider from "@material-ui/core/Divider";
-import Drawer from "@material-ui/core/Drawer";
-import ExpansionPanel from "@material-ui/core/ExpansionPanel";
-import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
-import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 import Typography from "@material-ui/core/Typography";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import HomeIcon from "@material-ui/icons/Home";
 import List from "@material-ui/core/List";
-import IconButton from "@material-ui/core/IconButton";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
-import Button from "@material-ui/core/Button";
+import SearchIcon from "@material-ui/icons/Search";
 
 const styles = theme => ({
   categoryHeader: {
@@ -103,7 +90,7 @@ const categories = [
       },
       { id: "Integrations", icon: <Extension />, linkTo: "/" },
       { id: "Grid Layout", icon: <LayersIcon />, linkTo: "/dashboard" },
-      { id: "Paperbase", icon: <LayersIcon />, linkTo: "/paperbase" }
+      { id: "Dashboard 2", icon: <LayersIcon />, linkTo: "/paperbase" }
     ]
   },
   {
@@ -117,9 +104,15 @@ const categories = [
       },
       { id: "Register", icon: <DashboardIcon />, linkTo: "/" },
       { id: "Forgot Password", icon: <DashboardIcon />, linkTo: "/" },
-      { id: "Charts", icon: <DashboardIcon />, linkTo: "/" },
-      { id: "Table", icon: <DashboardIcon />, linkTo: "/" },
-      { id: "searchInput", icon: <DashboardIcon />, linkTo: "/searchInput" },
+      { id: "Charts", icon: <BarChartIcon />, linkTo: "/" },
+      {
+        id: "Table",
+        icon: <TableIcon />,
+        linkTo: "/"
+      },
+      { id: "searchInput", icon: <SearchIcon />, linkTo: "/searchInput" },
+      { id: "Simple real-time search", icon: <SearchIcon />, linkTo: "/search" },
+
       { id: "404 Page", icon: <DashboardIcon />, linkTo: "/randompage" },
       { id: "Blank Page", icon: <DashboardIcon />, linkTo: "/Blank" }
     ]

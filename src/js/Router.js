@@ -12,6 +12,7 @@ import RGL from "./Dynamic-add-remove";
 import PaperBase from "./paperbase/PaperBase";
 import Blank from "./pages/Blank";
 import SearchInput from "./components/SearchInput";
+import Search from "./components/Search";
 
 const Router = () => (
   <BrowserRouter>
@@ -22,6 +23,7 @@ const Router = () => (
       <Route path="/paperbase" component={PaperBase} />
       <Route path="/blank" component={Blank} />
       <Route path="/searchInput" component={SearchInput} />
+      <Route path="/search" component={Search} />
       <Route path="/materialui" component={MuiBtns} />
       <Route path="/materialui1" component={Cards} />
       <Route path="/materialui2" component={Panels} />
