@@ -9,7 +9,6 @@ import Panels from "./materialUI/MaterialUIPanels";
 
 import SignIn from "./materialUI/SignIn";
 import RGL from "./Dynamic-add-remove";
-import PaperBase from "./paperbase/PaperBase";
 import Blank from "./pages/Blank";
 import SearchInput from "./components/SearchInput";
 import Search from "./components/Search";
@@ -20,7 +19,6 @@ const Router = () => (
       <Route exact path="/" component={Dashboard} />
       <Route path="/signIn" component={SignIn} />
       <Route path="/dashboard" component={RGL} />
-      <Route path="/paperbase" component={PaperBase} />
       <Route path="/blank" component={Blank} />
       <Route path="/searchInput" component={SearchInput} />
       <Route path="/search" component={Search} />

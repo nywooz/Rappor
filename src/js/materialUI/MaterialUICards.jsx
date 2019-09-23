@@ -81,7 +81,7 @@ class RecipeReviewCard extends React.Component {
             the mussels, if you like.
           </Typography>
         </CardContent>
-        <CardActions className={classes.actions} disableActionSpacing>
+        <CardActions className={classes.actions} disableactionspacing="true">
           <IconButton aria-label="Add to favorites">
             <FavoriteIcon />
           </IconButton>

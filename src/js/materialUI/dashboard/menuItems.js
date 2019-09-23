@@ -16,7 +16,6 @@ import Typography from "@material-ui/core/Typography";
 import List from "@material-ui/core/List";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import SearchIcon from "@material-ui/icons/Search";
-import SignIn from "../SignIn";
 
 const styles = theme => ({
   categoryHeader: {
@@ -91,7 +90,6 @@ const categories = [
       },
       { id: "Integrations", icon: <Extension />, linkTo: "/" },
       { id: "Grid Layout", icon: <LayersIcon />, linkTo: "/dashboard" },
-      { id: "Dashboard 2", icon: <LayersIcon />, linkTo: "/paperbase" }
     ]
   },
   {
@@ -204,10 +202,6 @@ function Navigator(props) {
                 )}
 
                 <ListItemText
-                  classes={{
-                    primary: classes.itemPrimary,
-                    textDense: classes.textDense
-                  }}
                 >
                   {childId}
                 </ListItemText>
