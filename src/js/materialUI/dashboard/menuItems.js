@@ -16,6 +16,7 @@ import Typography from "@material-ui/core/Typography";
 import List from "@material-ui/core/List";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import SearchIcon from "@material-ui/icons/Search";
+import SignIn from "../SignIn";
 
 const styles = theme => ({
   categoryHeader: {
@@ -100,7 +101,7 @@ const categories = [
         id: "Login",
         icon: "",
         active: false,
-        linkTo: "/"
+        linkTo: "/SignIn"
       },
       { id: "Register", icon: <DashboardIcon />, linkTo: "/" },
       { id: "Forgot Password", icon: <DashboardIcon />, linkTo: "/" },
@@ -110,8 +111,12 @@ const categories = [
         icon: <TableIcon />,
         linkTo: "/"
       },
-      { id: "searchInput", icon: <SearchIcon />, linkTo: "/searchInput" },
-      { id: "Simple real-time search", icon: <SearchIcon />, linkTo: "/search" },
+      { id: "Search Input", icon: <SearchIcon />, linkTo: "/searchInput" },
+      {
+        id: "Simple real-time search",
+        icon: <SearchIcon />,
+        linkTo: "/search"
+      },
 
       { id: "404 Page", icon: <DashboardIcon />, linkTo: "/randompage" },
       { id: "Blank Page", icon: <DashboardIcon />, linkTo: "/Blank" }

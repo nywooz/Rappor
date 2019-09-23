@@ -23,7 +23,7 @@ import Navigator, {
   mainListItems,
   secondaryListItems,
   thirdListItems
-} from "./listItems";
+} from "./menuItems";
 import SimpleLineChart from "./SimpleLineChart";
 import SimpleTable from "./SimpleTable";
 import MenuItem from "@material-ui/core/MenuItem";
@@ -218,7 +218,7 @@ class Dashboard extends React.Component {
             )}
 
             {!auth && (
-              <Button color="inherit" href="/signIn">
+              <Button color="inherit" href="/SignIn">
                 Login
               </Button>
             )}
@@ -235,9 +235,7 @@ class Dashboard extends React.Component {
           }}
           open={this.state.open}
         >
-          <Navigator
-            handleDrawerToggle={this.handleDrawerToggle}
-          />
+          <Navigator handleDrawerToggle={this.handleDrawerToggle} />
         </Drawer>
 
         <main className={classes.content}>

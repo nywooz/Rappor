@@ -594,11 +594,24 @@ export default withStyles(styles)(PaperSheet);
 
 class Search extends React.Component {
   state = {
-    search: ""
+    search: "",
+    initialItems: data.data,
+    items: []
   };
 
+  componentDidMount() {
+    this.setState({ items: this.state.initialItems });
+  }
+
   handleSearch = event => {
-    this.setState({ search: event.target.value });
+    const value = event.target.value;
+
+    this.setState({ search: value });
+    let updatedList = this.state.initialItems;
+    updatedList = updatedList.filter(function(item) {
+      return item.toLowerCase().search(event.target.value.toLowerCase()) !== -1;
+    });
+    this.setState({ items: updatedList });
   };
 
   render() {
@@ -612,7 +625,6 @@ class Search extends React.Component {
             className={classes.input}
             placeholder="Search"
             className={classes.textField}
-            margin="normal"
             value={this.state.search}
             onChange={this.handleSearch}
           />
@@ -622,33 +634,28 @@ class Search extends React.Component {
         </div>
 
         <Typography variant="h6" className={classes.title}>
-          Search results
+          {this.state.items.length} result(s) found:
         </Typography>
 
-        <div className={classes.demo}>
-          <SearchList />
-        </div>
+        <Lister items={this.state.items} />
       </div>
     );
   }
 }
 
-function SearchList(props) {
-  const { classes } = props;
+function Lister(props) {
+  const { classes, items, search } = props;
 
   return (
     <List dense={false}>
-      {data.data.map((item, index) => {
-        return (
+      {items &&
+        items.map((item, index) => {
+          return (
             <ListItem key={index}>
-                
-            <ListItemText
-              primary="Single-line item"
-              secondary={"Secondary text"}
-            />
-          </ListItem>
-        );
-      })}
+              <ListItemText primary={item} />
+            </ListItem>
+          );
+        })}
     </List>
   );
 }
