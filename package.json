@@ -14,9 +14,6 @@
     "styles:watch": "stylus -u autoprefixer-stylus -w ./src/css/style.styl -o ./src/css/style.css",
     "start-api": "json-server --port 3001 --watch --static none data/db.json"
   },
-  "eslintConfig": {
-    "extends": "./node_modules/react-scripts/.eslintrc"
-  },
   "author": "Noor",
   "license": "MIT",
   "devDependencies": {
@@ -58,6 +55,9 @@
     "redux": "^3.7.2",
     "redux-devtools": "^3.4.1",
     "typeface-roboto": "0.0.75"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
   },
   "browserslist": [
     ">0.2%",

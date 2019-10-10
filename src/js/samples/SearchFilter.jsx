@@ -1,14 +1,11 @@
 import React from "react";
 
-var FilteredList = React.createClass({
-  handleSearch: function(event) {
-    var updatedList = this.state.initialItems;
-    updatedList = updatedList.filter(function(item) {
-      return item.toLowerCase().search(event.target.value.toLowerCase()) !== -1;
-    });
-    this.setState({ items: updatedList });
-  },
-  getInitialState: function() {
+class FilteredList extends Component {
+  componentDidMount = () => {
+    this.setState({ items: this.state.initialItems });
+  };
+
+  getInitialState = () => {
     return {
       initialItems: [
         "Apples",
@@ -22,11 +19,17 @@ var FilteredList = React.createClass({
       ],
       items: []
     };
-  },
-  componentDidMount: function() {
-    this.setState({ items: this.state.initialItems });
-  },
-  render: function() {
+  };
+
+  handleSearch = event => {
+    var updatedList = this.state.initialItems;
+    updatedList = updatedList.filter(function(item) {
+      return item.toLowerCase().search(event.target.value.toLowerCase()) !== -1;
+    });
+    this.setState({ items: updatedList });
+  };
+
+  render() {
     return (
       <div className="filter-list">
         <form>
@@ -43,10 +46,10 @@ var FilteredList = React.createClass({
       </div>
     );
   }
-});
+}
 
-var List = React.createClass({
-  render: function() {
+class List extends Component {
+  render() {
     return (
       <ul className="list-group">
         {this.props.items.map(function(item) {
@@ -59,6 +62,6 @@ var List = React.createClass({
       </ul>
     );
   }
-});
+}
 
 React.render(<FilteredList />, document.getElementById("app"));
