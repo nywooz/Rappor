@@ -52,3 +52,8 @@ export function resizeHChart(ref_HighChart) {
   // chart.setSize(width, height);
   // chart.setSize(this.offsetWidth - 20, this.offsetHeight - 20, false);
 }
+
+export const randomArray = (length = 4, max = 4) =>
+  Array(length)
+    .fill()
+    .map(() => Math.round(Math.random() * length));

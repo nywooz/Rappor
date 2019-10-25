@@ -2,31 +2,92 @@ import React from "react";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 
-import { resizeHChart } from "../commonFns";
+import { resizeHChart, randomArray } from "../commonFns";
 
 export class TemplateChart extends React.Component {
-  constructor() {
-    super();
-    this.state = { data: [] };
-    this.intervalId = setInterval(
-      () => this.setState({ data: [...Array(3)].map(Math.random) }),
-      3000
-    );
-  }
+  state = {
+    refreshRate: 1000,
+    data: (function() {
+      // generate an array of random data
+      var data = [],
+        time = new Date().getTime(),
+        i;
+
+      for (i = -19; i <= 0; i += 1) {
+        data.push({
+          x: time + i * 1000,
+          y: Math.random()
+        });
+      }
+      return data;
+    })()
+  };
 
   componentDidMount() {
-    const ref_HighChart = this.ref_HighChart;
-    resizeHChart(ref_HighChart);
+    const chart = this.ref_HighChart.chart;
+    chart.hcEvents.load = this.addSeries(chart);
   }
 
   componentWillUnmount() {
+    this.ref_HighChart &&
+      this.ref_HighChart.destroy &&
+      this.ref_HighChart.destroy();
     clearInterval(this.intervalId);
+  }
+
+  // shift if the series is longer than 25(default)
+  boolShift(series, length = 25) {
+    return series && series.data.length > 25;
+  }
+
+  addSeries(chart) {
+    const series = chart.series[0];
+    const chartType = this.props.type;
+    const shiftableCharts = [
+      // "pie",
+      "line",
+      // "bar",
+      "area",
+      "spline",
+      "areaspline"
+    ];
+
+    shiftableCharts.includes(chartType)
+      ? this.addPoint(chartType, series, true)
+      : this.addPoint(chartType);
+
+    resizeHChart(chart);
+  }
+
+  // set up the updating of the chart each second
+  addPoint(chartType, series, addPt) {
+    if (addPt) {
+      this.intervalId = setInterval(() => {
+        const x = new Date().getTime(); // current time   new Date().toLocaleTimeString()
+        const y = Math.random();
+        series && series.addPoint([x, y], true, this.boolShift(series));
+      }, this.state.refreshRate);
+    } else {
+      this.intervalId = setInterval(
+        () =>
+          this.setState((state, props) => ({
+            data: [{
+              y : Math.random()
+            },{
+              y : Math.random()
+            },{
+              y : Math.random()
+            },{
+              y : Math.random()
+            }]
+          })),
+        this.state.refreshRate
+      );
+    }
   }
 
   render() {
     resizeHChart(this.ref_HighChart);
-
-    const cb = function() {};
 
     const { type } = this.props;
 
@@ -41,7 +102,12 @@ export class TemplateChart extends React.Component {
           chart: {
             type: type,
             animation: true,
-            events: { load: cb }
+            events: {
+              load: function() {}
+            }
+          },
+          title: {
+            text: "Live Data Sample"
           },
           credits: {
             enabled: false
@@ -51,3 +117,9 @@ export class TemplateChart extends React.Component {
     );
   }
 }
+
+// bar chart
+// https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/data/livedata-columns
+// https://codesandbox.io/s/v318454060?from-embed
+// set up the updating of the chart each second
+// https://www.highcharts.com/demo/dynamic-update
