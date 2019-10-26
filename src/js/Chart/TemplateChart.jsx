@@ -2,7 +2,7 @@ import React from "react";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 
-import { resizeHChart, randomArray } from "../commonFns";
+import { resizeHChart, pieRandomData } from "../commonFns";
 
 export class TemplateChart extends React.Component {
   state = {
@@ -25,7 +25,11 @@ export class TemplateChart extends React.Component {
 
   componentDidMount() {
     const chart = this.ref_HighChart.chart;
+    // HC Events
     chart.hcEvents.load = this.addSeries(chart);
+    // chart.hcEvents.destroy =this.
+    // chart.hcEvents.endResize=this.
+    // chart.hcEvents.resize=this.
   }
 
   componentWillUnmount() {
@@ -54,7 +58,7 @@ export class TemplateChart extends React.Component {
 
     shiftableCharts.includes(chartType)
       ? this.addPoint(chartType, series, true)
-      : this.addPoint(chartType);
+      : this.addPoint(chartType, series);
 
     resizeHChart(chart);
   }
@@ -68,21 +72,11 @@ export class TemplateChart extends React.Component {
         series && series.addPoint([x, y], true, this.boolShift(series));
       }, this.state.refreshRate);
     } else {
-      this.intervalId = setInterval(
-        () =>
-          this.setState((state, props) => ({
-            data: [{
-              y : Math.random()
-            },{
-              y : Math.random()
-            },{
-              y : Math.random()
-            },{
-              y : Math.random()
-            }]
-          })),
-        this.state.refreshRate
-      );
+      this.intervalId = setInterval(() => {
+        // https://api.highcharts.com/class-reference/Highcharts.Series
+        // setData(data [, redraw] [, animation] [, updatePoints])
+        series.setData(pieRandomData(), true, true, true);
+      }, this.state.refreshRate);
     }
   }
 
@@ -117,6 +111,8 @@ export class TemplateChart extends React.Component {
     );
   }
 }
+
+// https://www.highcharts.com/blog/post/highcharts-react-wrapper-dashboard/
 
 // bar chart
 // https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/data/livedata-columns

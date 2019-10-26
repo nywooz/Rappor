@@ -56,4 +56,9 @@ export function resizeHChart(ref_HighChart) {
 export const randomArray = (length = 4, max = 4) =>
   Array(length)
     .fill()
-    .map(() => Math.round(Math.random() * length));
+    .map(() => Math.round(Math.random() * max));
+
+export const pieRandomData = (length = 4, max = 20) =>
+  new Array(length)
+    .fill(null)
+    .map(() => ({ y: Math.round(Math.random() * max) }));
