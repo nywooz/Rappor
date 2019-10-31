@@ -58,7 +58,29 @@ export const randomArray = (length = 4, max = 4) =>
     .fill()
     .map(() => Math.round(Math.random() * max));
 
+export const pieRandomData3 = (length = 4, max = 20) =>
+  new Array(length).fill(null).map(() => Math.round(Math.random() * max));
+
 export const pieRandomData = (length = 4, max = 20) =>
   new Array(length)
     .fill(null)
-    .map(() => ({ y: Math.round(Math.random() * max) }));
+    .map(() => [
+      browserArr[Math.floor(Math.random() * browserArr.length)],
+      Math.round(Math.random() * max)
+    ]);
+
+export const LineRandomData = () => {
+  // generate an array of random data
+  const data = [];
+  const time = new Date().getTime();
+
+  for (let i = -19; i <= 0; i++) {
+    data.push({
+      x: time + i * 1000,
+      y: Math.random()
+    });
+  }
+  return data;
+};
+
+const browserArr = ["Chrome", "Edge", "Mozilla", "IE", "Safari", "Opera"];

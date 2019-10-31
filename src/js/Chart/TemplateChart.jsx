@@ -2,25 +2,12 @@ import React from "react";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 
-import { resizeHChart, pieRandomData } from "../commonFns";
+import { resizeHChart, pieRandomData, LineRandomData } from "../commonFns";
 
 export class TemplateChart extends React.Component {
   state = {
     refreshRate: 1000,
-    data: (function() {
-      // generate an array of random data
-      var data = [],
-        time = new Date().getTime(),
-        i;
-
-      for (i = -19; i <= 0; i += 1) {
-        data.push({
-          x: time + i * 1000,
-          y: Math.random()
-        });
-      }
-      return data;
-    })()
+    data: LineRandomData()
   };
 
   componentDidMount() {
@@ -95,11 +82,26 @@ export class TemplateChart extends React.Component {
           series: [{ data: this.state.data }],
           chart: {
             type: type,
+
+            options3d: {
+              enabled: true,
+              alpha: 45
+            },
+
             animation: true,
             events: {
+              // covered by  chart.hcEvents.load
               load: function() {}
             }
           },
+
+          plotOptions: {
+            pie: {
+              innerSize: 200,
+              depth: 45
+            }
+          },
+
           title: {
             text: "Live Data Sample"
           },
@@ -112,6 +114,8 @@ export class TemplateChart extends React.Component {
   }
 }
 
+// https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/3d-pie-donut/
+// https://www.highcharts.com/docs/chart-and-series-types/chart-types
 // https://www.highcharts.com/blog/post/highcharts-react-wrapper-dashboard/
 
 // bar chart
